@@ -37,3 +37,5 @@ export async function refreshTokenApi(refreshToken: string) {
   );
   return data.data.accessToken;
 }
+
+// Documentation: Handles all authentication related API calls including login, register, and token refresh.
