@@ -106,3 +106,5 @@ export const Button = forwardRef<View, ButtonProps>(
 );
 
 Button.displayName = "Button";
+
+// Documentation: Core Button component with integrated haptic feedback, loading states, and NativeWind styling.
