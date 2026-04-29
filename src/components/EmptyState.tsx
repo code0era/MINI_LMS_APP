@@ -38,3 +38,5 @@ export function EmptyState({
     </View>
   );
 }
+
+// Documentation: Fallback UI component displayed when lists (search results, bookmarks) yield no items.
