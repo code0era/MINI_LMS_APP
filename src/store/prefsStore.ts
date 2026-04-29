@@ -53,3 +53,5 @@ export const usePrefsStore = create<PrefsState>((set, get) => ({
     set({ lastActiveAt: now });
   }
 }));
+
+// Documentation: Tracks global user preferences like dark mode and notification permissions using AsyncStorage.
