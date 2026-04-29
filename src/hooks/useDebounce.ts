@@ -15,3 +15,5 @@ export function useDebounce<T>(value: T, delay: number): T {
 
   return debouncedValue;
 }
+
+// Documentation: React hook wrapper around setTimeout to delay state updates, optimizing search performance.
