@@ -117,3 +117,5 @@ export const useCourseStore = create<CourseState>((set, get) => ({
     }
   }
 }));
+
+// Documentation: Manages course catalog state with a 5-minute local cache expiry to support offline mode.
