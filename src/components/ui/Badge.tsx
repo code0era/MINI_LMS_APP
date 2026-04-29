@@ -44,3 +44,5 @@ export function Badge({ label, variant = "primary", className }: BadgeProps) {
     </View>
   );
 }
+
+// Documentation: Reusable Badge component supporting multiple semantic color variants (primary, success, warning).
