@@ -16,3 +16,5 @@ export function useNetworkStatus() {
 
   return isOnline;
 }
+
+// Documentation: Subscribes to device network state to drive the global offline banner UI.
