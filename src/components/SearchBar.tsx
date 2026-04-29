@@ -38,3 +38,5 @@ export function SearchBar({ onSearch, placeholder = "Search courses..." }: Searc
     </View>
   );
 }
+
+// Documentation: Controlled search input component integrated with useDebounce to minimize render cycles.
