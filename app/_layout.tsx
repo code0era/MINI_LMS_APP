@@ -5,12 +5,17 @@ import { useAuthStore } from "../src/store/authStore";
 import { usePrefsStore } from "../src/store/prefsStore";
 import { ErrorBoundary } from "../src/components/ErrorBoundary";
 import { OfflineBanner } from "../src/components/OfflineBanner";
+import { useNotifications } from "../src/hooks/useNotifications";
+import { withAnalytics } from "../src/services/analytics";
 import "../global.css"; // Ensure NativeWind CSS is imported
 
-export default function RootLayout() {
+function RootLayout() {
   const hydrateAuth = useAuthStore((s) => s.hydrate);
   const hydratePrefs = usePrefsStore((s) => s.hydrate);
   const [isReady, setIsReady] = useState(false);
+
+  // Initialize background notification tracking
+  useNotifications();
 
   useEffect(() => {
     async function init() {
@@ -50,3 +55,5 @@ export default function RootLayout() {
     </ErrorBoundary>
   );
 }
+
+export default withAnalytics(RootLayout);
