@@ -18,3 +18,5 @@ export function OfflineBanner() {
     </SafeAreaView>
   );
 }
+
+// Documentation: Auto-mounting banner that alerts users when they drop connection and switch to cached data.
