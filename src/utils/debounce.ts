@@ -9,3 +9,5 @@ export function debounce<T extends (...args: unknown[]) => void>(
     timer = setTimeout(() => fn(...args), ms);
   };
 }
+
+// Documentation: Generic debounce function used primarily to limit API calls during rapid search input.
