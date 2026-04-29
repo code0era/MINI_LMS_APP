@@ -23,3 +23,5 @@ export function formatDate(iso: string): string {
 export function toTitleCase(str: string): string {
   return str.replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+// Documentation: Pure functions for formatting prices, ratings, dates, and truncating long text strings.
