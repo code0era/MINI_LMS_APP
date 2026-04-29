@@ -55,3 +55,5 @@ export function useNotifications() {
     };
   }, [notifGranted]);
 }
+
+// Documentation: Manages local push notifications, triggering alerts on milestones and 24-hour inactivity.
