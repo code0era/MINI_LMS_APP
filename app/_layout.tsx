@@ -57,3 +57,5 @@ function RootLayout() {
 }
 
 export default withAnalytics(RootLayout);
+
+// Documentation: Root layout orchestrating global providers: Sentry, PostHog, Notifications, and Error Boundary.
