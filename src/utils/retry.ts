@@ -16,3 +16,5 @@ export async function retry<T>(
     return retry(fn, attempts - 1, delayMs * 2);
   }
 }
+
+// Documentation: Implements exponential backoff strategy for robust API requests during poor network conditions.
