@@ -1,6 +1,5 @@
 import React, { forwardRef, useState } from "react";
 import { View, TextInput, Text, TouchableOpacity, TextInputProps } from "react-native";
-import { twMerge } from "tailwind-merge";
 
 interface InputProps extends TextInputProps {
   label?: string;

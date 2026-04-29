@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
 import { TouchableOpacity, Text, ActivityIndicator, TouchableOpacityProps, View } from "react-native";
 import * as Haptics from "expo-haptics";
-import { twMerge } from "tailwind-merge";
 
 interface ButtonProps extends TouchableOpacityProps {
   label: string;
@@ -67,20 +66,9 @@ export const Button = forwardRef<View, ButtonProps>(
       lg: "text-lg",
     };
 
-    const containerStyle = twMerge(
-      baseStyles,
-      variantStyles[variant],
-      sizeStyles[size],
-      (disabled || isLoading) && "opacity-50",
-      className
-    );
+    const containerStyle = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${disabled || isLoading ? "opacity-50" : ""} ${className || ""}`.trim();
 
-    const labelStyle = twMerge(
-      textStyles[variant],
-      textSizeStyles[size],
-      leftIcon && "ml-2",
-      rightIcon && "mr-2"
-    );
+    const labelStyle = `${textStyles[variant]} ${textSizeStyles[size]} ${leftIcon ? "ml-2" : ""} ${rightIcon ? "mr-2" : ""}`.trim();
 
     return (
       <TouchableOpacity

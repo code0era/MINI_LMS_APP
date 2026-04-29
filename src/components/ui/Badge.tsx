@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { twMerge } from "tailwind-merge";
 
 interface BadgeProps {
   label: string;
@@ -25,19 +24,15 @@ export function Badge({ label, variant = "primary", className }: BadgeProps) {
     error: "text-error",
   };
 
+  const containerStyle = `self-start px-2 py-0.5 rounded-full border items-center justify-center ${variantStyles[variant]} ${className || ""}`.trim();
+  const textStyle = `text-xs font-medium uppercase tracking-wider ${textStyles[variant]}`;
+
   return (
     <View
-      className={twMerge(
-        "px-2.5 py-1 rounded-full border items-center justify-center",
-        variantStyles[variant],
-        className
-      )}
+      className={containerStyle}
     >
       <Text
-        className={twMerge(
-          "text-xs font-medium uppercase tracking-wider",
-          textStyles[variant]
-        )}
+        className={textStyle}
       >
         {label}
       </Text>
