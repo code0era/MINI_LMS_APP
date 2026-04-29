@@ -83,3 +83,5 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// Documentation: Axios client configured with automatic 401 token refresh and request queuing to prevent race conditions.
