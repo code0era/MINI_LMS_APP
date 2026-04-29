@@ -98,3 +98,5 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   clearError: () => set({ error: null }),
 }));
+
+// Documentation: Zustand store managing authentication state, securely hydrating tokens from expo-secure-store.
