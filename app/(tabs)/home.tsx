@@ -7,6 +7,7 @@ import { SkeletonCard } from "../../src/components/SkeletonCard";
 import { SearchBar } from "../../src/components/SearchBar";
 import { EmptyState } from "../../src/components/EmptyState";
 import { LegendList } from "@legendapp/list";
+import { useAIRecommendations } from "../../src/hooks/useAIRecommendations";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function HomeScreen() {
   } = useCourseStore();
   
   const [searchQuery, setSearchQuery] = useState("");
+  const { recommendation, isLoading: isAILoading } = useAIRecommendations();
 
   useEffect(() => {
     loadCourses(false);
@@ -63,6 +65,18 @@ export default function HomeScreen() {
     <View className="flex-1 bg-surface-DEFAULT">
       <View className="px-4 pt-4">
         <SearchBar onSearch={setSearchQuery} />
+        
+        {recommendation && !searchQuery && (
+          <View className="bg-primary-900/50 border border-primary-500/30 rounded-xl p-4 mb-4">
+            <View className="flex-row items-center mb-2">
+              <Text className="text-xl mr-2">🤖</Text>
+              <Text className="font-semi text-primary-300">AI Recommendation</Text>
+            </View>
+            <Text className="text-text-primary leading-relaxed text-sm">
+              {recommendation}
+            </Text>
+          </View>
+        )}
       </View>
 
       <LegendList
