@@ -57,3 +57,5 @@ export class ErrorBoundary extends Component<Props, State> {
     return this.props.children;
   }
 }
+
+// Documentation: Global React Error Boundary preventing white-screens and providing a fallback recovery UI.
