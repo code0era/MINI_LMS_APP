@@ -55,3 +55,5 @@ export async function fetchCourses(page = 1): Promise<Course[]> {
   ]);
   return mergeCourses(products, instructors);
 }
+
+// Documentation: Merges data from randomproducts and randomusers to create a cohesive Course domain model.
