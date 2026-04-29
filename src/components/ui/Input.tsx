@@ -88,3 +88,5 @@ export const Input = forwardRef<TextInput, InputProps>(
 );
 
 Input.displayName = "Input";
+
+// Documentation: Form input component with built-in error state styling and secure text toggle for passwords.
