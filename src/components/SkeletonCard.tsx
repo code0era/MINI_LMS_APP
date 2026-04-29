@@ -45,3 +45,5 @@ export function SkeletonCard() {
     </View>
   );
 }
+
+// Documentation: Uses react-native-reanimated for smooth, continuous shimmer effects during data fetching.
