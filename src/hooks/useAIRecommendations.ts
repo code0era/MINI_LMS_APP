@@ -62,3 +62,5 @@ export function useAIRecommendations() {
 
   return { recommendation, isLoading };
 }
+
+// Documentation: Uses Groq SDK with Llama 3 to analyze user bookmarks and generate personalized course recommendations.
