@@ -52,3 +52,5 @@ export function Avatar({ url, fallback = "?", size = "md", className }: AvatarPr
     </View>
   );
 }
+
+// Documentation: Reusable Avatar component utilizing expo-image for aggressive caching and fast rendering.
