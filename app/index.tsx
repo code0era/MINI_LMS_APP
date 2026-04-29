@@ -19,3 +19,5 @@ export default function Index() {
 
   return <Redirect href="/(tabs)/home" />;
 }
+
+// Documentation: Root index route acting as the primary authentication guard, redirecting to login or home.
