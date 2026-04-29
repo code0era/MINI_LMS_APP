@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { TouchableOpacity, Text, ActivityIndicator, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator, TouchableOpacityProps, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { twMerge } from "tailwind-merge";
 
@@ -13,7 +13,7 @@ interface ButtonProps extends TouchableOpacityProps {
   hapticFeedback?: boolean;
 }
 
-export const Button = forwardRef<TouchableOpacity, ButtonProps>(
+export const Button = forwardRef<View, ButtonProps>(
   (
     {
       label,

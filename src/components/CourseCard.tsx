@@ -2,8 +2,8 @@ import React, { memo } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
-import type { Course } from "../../types/course";
-import { formatPrice, formatRating } from "../../utils/formatters";
+import type { Course } from "../types/course";
+import { formatPrice, formatRating } from "../utils/formatters";
 
 interface CourseCardProps {
   course: Course;
