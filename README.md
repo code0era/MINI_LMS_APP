@@ -2,6 +2,18 @@
 
 A full-featured Mini LMS mobile application built with React Native Expo. Designed and architected as a technical assignment.
 
+## 📱 App Preview & Demo
+
+### Application Interface
+![App Preview](doc/app.jpeg)
+
+### Working Demonstration
+*(If your viewer supports video, you can see the app in action below)*
+
+https://github.com/code0era/MINI_LMS_APP/raw/main/doc/rec.mp4
+
+---
+
 ## 🚀 Key Features
 
 1. **Authentication:** Secure JWT-based login/register using `api.freeapi.app`, with tokens safely stored in `expo-secure-store`.
