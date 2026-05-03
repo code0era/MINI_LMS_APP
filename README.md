@@ -8,9 +8,7 @@ A full-featured Mini LMS mobile application built with React Native Expo. Design
 ![App Preview](doc/app.jpeg)
 
 ### Working Demonstration
-*(If your viewer supports video, you can see the app in action below)*
-
-https://github.com/code0era/MINI_LMS_APP/raw/main/doc/rec.mp4
+🎥 **[Watch the App Demo on Google Drive](https://drive.google.com/file/d/1M1kuzrW4PBFvZgh91gTqoadGH4AIGq99/view?usp=drivesdk)**
 
 ---
 
