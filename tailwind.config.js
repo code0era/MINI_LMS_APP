@@ -9,30 +9,32 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50:  "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
+          50:  "#f0f9f9",
+          100: "#d9f1f1",
+          200: "#b3e2e2",
+          300: "#8ccfcf",
+          400: "#66bcbc",
+          500: "#4db6ac", // The Photography Teal from reference
+          600: "#3d918a",
+          700: "#2e6d67",
+          800: "#1f4845",
+          900: "#0f2422",
         },
         surface: {
-          DEFAULT: "#0f172a",
-          card:    "#1e293b",
-          border:  "#334155",
-          muted:   "#475569",
+          DEFAULT: "#ffffff",
+          card:    "#ffffff",
+          border:  "#f1f5f9",
+          muted:   "#94a3b8",
+        },
+        text: {
+          primary: "#334155",
+          secondary: "#64748b",
+          heading: "#4db6ac",
         },
         accent: {
-          DEFAULT: "#f59e0b",
-          light:   "#fcd34d",
+          DEFAULT: "#ff4b4b", // Live badge red
+          light:   "#ffeded",
         },
-        success: "#22c55e",
-        error:   "#ef4444",
-        warning: "#f59e0b",
       },
       fontFamily: {
         sans:   ["Inter_400Regular"],

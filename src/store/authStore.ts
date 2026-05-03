@@ -13,7 +13,7 @@ interface AuthState {
 
   hydrate: () => Promise<void>;
   login: (payload: LoginPayload) => Promise<void>;
-  register: (payload: RegisterPayload) => Promise<void>;
+  register: (payload: Omit<RegisterPayload, "role">) => Promise<void>;
   logout: () => Promise<void>;
   clearError: () => void;
 }
@@ -65,7 +65,17 @@ export const useAuthStore = create<AuthState>((set) => ({
   register: async (payload) => {
     set({ isLoading: true, error: null });
     try {
-      const { accessToken, refreshToken, user } = await registerApi(payload);
+      // 1. Register the user
+      await registerApi({
+        ...payload,
+        role: "USER",
+      });
+
+      // 2. Automatically log them in to get tokens
+      const { accessToken, refreshToken, user } = await loginApi({
+        email: payload.email,
+        password: payload.password,
+      });
       
       await secureStorage.set(KEYS.ACCESS_TOKEN, accessToken);
       await secureStorage.set(KEYS.REFRESH_TOKEN, refreshToken);
@@ -73,6 +83,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       
       set({ user, isAuthenticated: true, isLoading: false });
     } catch (err: any) {
+      console.error("Registration Error:", err.response?.data || err.message);
       set({
         error: err.response?.data?.message || "Registration failed. Please try again.",
         isLoading: false,

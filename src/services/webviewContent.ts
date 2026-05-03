@@ -5,11 +5,11 @@ export const courseHtmlTemplate = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <style>
         :root {
-            --primary: #6366f1;
-            --surface: #0f172a;
-            --surface-card: #1e293b;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
+            --primary: #4db6ac;
+            --surface: #ffffff;
+            --surface-card: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
         }
         
         body {
@@ -17,96 +17,93 @@ export const courseHtmlTemplate = `
             background-color: var(--surface);
             color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 24px;
             line-height: 1.6;
         }
 
         .header {
             margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--surface-card);
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         h1 {
-            font-size: 24px;
-            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0 0 12px 0;
             color: var(--text-main);
+            line-height: 1.2;
         }
 
         .meta {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .video-placeholder {
+        .video-wrapper {
             width: 100%;
             aspect-ratio: 16/9;
-            background-color: var(--surface-card);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            position: relative;
+            background-color: #000;
+            border-radius: 24px;
             overflow: hidden;
+            margin-bottom: 32px;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
 
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-        }
-
-        .play-btn::after {
-            content: '';
-            display: block;
-            border-style: solid;
-            border-width: 10px 0 10px 20px;
-            border-color: transparent transparent transparent white;
-            margin-left: 5px;
-        }
-
-        .play-btn:active {
-            transform: scale(0.95);
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .content-box {
             background-color: var(--surface-card);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #f1f5f9;
         }
 
         .content-title {
             font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 10px 0;
+            font-weight: 800;
+            margin: 0 0 12px 0;
             color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+        
+        p#course-desc {
+            margin: 0;
+            font-size: 15px;
+            color: #475569;
+            font-weight: 500;
         }
 
-        button.action-btn {
+        .action-btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 15px 20px;
-            border-radius: 8px;
+            padding: 20px 24px;
+            border-radius: 24px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 900;
             width: 100%;
             cursor: pointer;
             margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 10px 15px -3px rgba(77, 182, 172, 0.3);
+            transition: all 0.2s;
         }
         
-        /* Inject dynamic data targets */
-        #course-title:empty::before { content: 'Loading Title...'; color: var(--text-muted); }
-        #course-desc:empty::before { content: 'Loading description...'; color: var(--text-muted); }
+        .action-btn:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -115,8 +112,16 @@ export const courseHtmlTemplate = `
         <div class="meta" id="course-meta">Loading details...</div>
     </div>
 
-    <div class="video-placeholder" id="video-container">
-        <div class="play-btn" onclick="handlePlay()"></div>
+    <div class="video-wrapper">
+        <video 
+            id="main-video" 
+            controls 
+            playsinline
+            poster="https://images.unsplash.com/photo-1452784444945-3f422708fe5e?q=80&w=1000&auto=format&fit=crop"
+        >
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
     <div class="content-box">
@@ -124,34 +129,31 @@ export const courseHtmlTemplate = `
         <p id="course-desc"></p>
     </div>
 
-    <button class="action-btn" onclick="handleComplete()">Complete Module</button>
+    <button class="action-btn" id="complete-btn" onclick="handleComplete()">Complete Module</button>
 
     <script>
-        // Communication Bridge to React Native
+        const video = document.getElementById('main-video');
+
         function sendMessageToRN(type, payload) {
+            const data = JSON.stringify({ type, payload });
             if (window.ReactNativeWebView) {
-                window.ReactNativeWebView.postMessage(JSON.stringify({ type, payload }));
+                window.ReactNativeWebView.postMessage(data);
+            } else if (window.parent) {
+                window.parent.postMessage(data, "*");
             }
         }
 
-        function handlePlay() {
-            sendMessageToRN('VIDEO_PLAY', { timestamp: Date.now() });
-            
-            const container = document.getElementById('video-container');
-            container.innerHTML = '<p style="color: var(--text-muted)">Simulating video playback...</p>';
-            
-            setTimeout(() => {
-                sendMessageToRN('VIDEO_COMPLETE', { timestamp: Date.now() });
-            }, 3000);
-        }
+        video.onplay = () => sendMessageToRN('VIDEO_PLAY', { timestamp: Date.now() });
+        video.onended = () => sendMessageToRN('VIDEO_COMPLETE', { timestamp: Date.now() });
+        video.onerror = () => sendMessageToRN('ERROR', { message: 'Video failed to load' });
 
         function handleComplete() {
             sendMessageToRN('MODULE_COMPLETE', { timestamp: Date.now() });
-            document.querySelector('.action-btn').innerHTML = 'Completed ✓';
-            document.querySelector('.action-btn').style.backgroundColor = '#22c55e';
+            const btn = document.getElementById('complete-btn');
+            btn.innerHTML = 'Completed ✓';
+            btn.style.backgroundColor = '#2dd4bf';
         }
 
-        // Global function to be called FROM React Native via injectedJavaScript
         window.injectCourseData = function(courseStr) {
             try {
                 const course = JSON.parse(courseStr);

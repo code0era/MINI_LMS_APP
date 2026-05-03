@@ -39,7 +39,14 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <PostHogProvider apiKey={POSTHOG_KEY} options={{ host: POSTHOG_HOST }}>
+    <PostHogProvider
+      apiKey={POSTHOG_KEY}
+      options={{
+        host: POSTHOG_HOST,
+        captureNativeNavigationEvents: false
+
+      }}
+    >
       <PostHogAuthSync>{children}</PostHogAuthSync>
     </PostHogProvider>
   );
@@ -48,7 +55,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 // Export a higher-order component to wrap the root layout with Sentry
 export const withAnalytics = (WrappedComponent: React.ComponentType) => {
   const SentryWrapped = SENTRY_DSN ? Sentry.wrap(WrappedComponent) : WrappedComponent;
-  
+
   return function WithAnalytics(props: any) {
     return (
       <AnalyticsProvider>

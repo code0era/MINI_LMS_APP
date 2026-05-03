@@ -28,6 +28,9 @@ export function mergeCourses(
 ): Course[] {
   return products.map((product, index) => {
     const instructor = instructors[index % instructors.length]!;
+    // Remap random categories to our app's domain for consistent UI rendering
+    const category = index % 2 === 0 ? "Photography" : "Videography";
+    
     return {
       id: String(product.id),
       title: product.title,
@@ -36,7 +39,7 @@ export function mergeCourses(
       images: product.images,
       price: product.price,
       rating: product.rating,
-      category: product.category,
+      category: category,
       brand: product.brand,
       instructor: {
         id: String(instructor.id),

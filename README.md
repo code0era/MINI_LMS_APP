@@ -5,65 +5,83 @@ A full-featured Mini LMS mobile application built with React Native Expo. Design
 ## 🚀 Key Features
 
 1. **Authentication:** Secure JWT-based login/register using `api.freeapi.app`, with tokens safely stored in `expo-secure-store`.
-2. **Course Catalog:** Fetches and merges data from `/randomproducts` (courses) and `/randomusers` (instructors) dynamically, implementing infinite scroll with high-performance `@legendapp/list`.
-3. **Interactive Player (WebView):** A custom bridge passing React Native state into an HTML/JS context, including simulated video events and module completion tracking.
-4. **Offline-First:** All courses and user data are cached locally using `@react-native-async-storage/async-storage`. A banner automatically alerts users when network connectivity is lost.
-5. **State Management:** Fully modular `zustand` implementation splitting state into `authStore`, `courseStore`, and `prefsStore`.
-6. **Smart Notifications:** Automated local push notifications triggered by learning milestones (e.g., 5 bookmarks) and a 24h inactivity tracker.
-7. **AI Recommendations (Bonus):** Integrates the Groq API (Llama 3) to analyze a user's bookmark history and recommend their next course.
-8. **Error Tracking & Analytics (Bonus):** Fully wired with Sentry (crash reporting) and PostHog (event tracking).
+2. **Course Catalog:** Dynamic data merging with infinite scroll using `@legendapp/list`.
+3. **Interactive Player:** Custom bridge for module completion tracking and video simulation.
+4. **Offline-First:** Local caching with automatic connectivity detection banners.
+5. **Modern Styling:** Premium dark mode support (grayish tones) using NativeWind v4.
+6. **AI Recommendations:** Groq API (Llama 3) integration for personalized course discovery.
 
 ## 🛠 Tech Stack
 
 - **Framework:** React Native Expo (SDK 52+)
-- **Language:** TypeScript (Strict Mode)
 - **Styling:** NativeWind (Tailwind CSS v4)
 - **State Management:** Zustand
-- **Networking:** Axios (with custom retry/refresh interceptors)
+- **Networking:** Axios
 - **Form Validation:** React Hook Form + Zod
 - **List Rendering:** `@legendapp/list`
-- **CI/CD:** GitHub Actions + EAS Build
 
-## 📦 Local Setup
+## 🖼️ Application Flow & Documentation
 
-1. **Clone the repository:**
-   \`\`\`bash
-   git clone https://github.com/code0era/MINI_LMS_APP.git
-   cd MINI_LMS_APP
-   \`\`\`
+Below are the architectural diagrams and workflow visualizations for the CourseWave application:
 
-2. **Install dependencies:**
-   \`\`\`bash
-   npm install
-   # If you encounter peer dependency issues with React 19:
-   # npm install --legacy-peer-deps
-   \`\`\`
+### 1. System Logic & Architecture
+![System Architecture](doc/ttech.png)
 
-3. **Configure Environment Variables:**
-   Rename `.env.example` to `.env` and fill in the required keys. (Note: Only `EXPO_PUBLIC_API_BASE_URL` is mandatory. The rest are for bonus features).
+### 2. End-to-End Workflow
+![App Workflow](doc/flow.png)
 
-4. **Start the development server:**
-   \`\`\`bash
-   npx expo start
-   \`\`\`
-   
-5. **Run on device/emulator:**
-   Press `a` for Android or `i` for iOS.
+### 3. Application State & Data Flow
+![Data Flow](doc/working.png)
 
-## 🏗 Architecture Decisions
+### 4. Component Structure
+![Component Tree](doc/image%20copy.png)
 
-- **Why Zustand?** Lighter than Redux, less boilerplate, and easier to hydrate asynchronously from local storage on app boot.
-- **Why LegendList?** React Native's default `FlatList` drops frames when rendering complex cards with images. `LegendList` recycles components aggressively, maintaining 60fps even with 100+ items.
-- **Why NativeWind?** Enforces a strict, consistent design system (colors, spacing, typography) while allowing rapid UI iteration without context switching to StyleSheet objects.
-- **Axios Interceptors:** A request queue was implemented inside the response interceptor to handle 401 errors gracefully. If multiple requests fail simultaneously due to an expired token, the app only calls the refresh endpoint *once*, queues the others, and resolves them all when the new token arrives.
+### 5. Full Feature Roadmap
+![Feature Overview](doc/full%20form.png)
 
-## 📝 Submission Checklist
+## 📦 Local Setup (Step-by-Step)
 
-- [x] All 6 core requirements met
-- [x] TypeScript strictly typed
-- [x] Environment variables secured
-- [x] No `console.log` in production
-- [x] APK build configured
+### 1. Clone & Install
+```powershell
+git clone https://github.com/code0era/MINI_LMS_APP.git
+cd MINI_LMS_APP
+npm install
+```
+
+### 2. The "Worklets Shim" Fix (CRITICAL)
+Due to a known dependency mismatch in SDK 52 for some environments, you **must** create a directory junction to link the legacy worklets name to the newer core package. 
+
+**Run this in a PowerShell terminal (Administrator recommended):**
+```powershell
+cmd /c mklink /j node_modules\react-native-worklets node_modules\react-native-worklets-core
+```
+*Note: If you are on Mac/Linux, use: `ln -s react-native-worklets-core node_modules/react-native-worklets`*
+
+### 3. Environment Config
+Rename `.env.example` to `.env` and add your keys. 
+`EXPO_PUBLIC_API_BASE_URL` is required for the app to function.
+
+### 4. Start the App
+Always start with the clear-cache flag to ensure Babel configurations are picked up correctly:
+```bash
+npx expo start -c
+```
+
+## 🏗 Build Instructions
+
+### Generate Android APK
+To generate a standalone APK that can be installed on any device:
+```bash
+npx eas build -p android --profile production
+```
+*When prompted, select **"Y"** to generate a new Keystore. The build will take ~10 minutes on the Expo cloud.*
+
+## 📝 Project Structure
+- `/app`: Expo Router screens and layouts.
+- `/src/components`: UI components and design system.
+- `/src/store`: Zustand state management.
+- `/src/api`: Axios networking and data normalization.
+- `/assets`: Static images and thumbnails.
 
 ---
 *Built as a technical assignment submission.*

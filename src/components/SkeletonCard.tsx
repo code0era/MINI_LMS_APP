@@ -27,21 +27,24 @@ export function SkeletonCard() {
   }));
 
   return (
-    <View className="bg-surface-card rounded-2xl mb-4 overflow-hidden border border-surface-border p-4">
-      <Animated.View className="h-40 w-full bg-surface-border rounded-xl mb-4" style={animatedStyle} />
+    <View className="bg-white rounded-[32px] mb-6 overflow-hidden border border-slate-100 p-6">
+      <Animated.View className="h-48 w-full bg-slate-50 rounded-2xl mb-6" style={animatedStyle} />
       
-      <Animated.View className="w-1/3 h-4 bg-surface-border rounded-md mb-3" style={animatedStyle} />
-      
-      <Animated.View className="w-full h-6 bg-surface-border rounded-md mb-2" style={animatedStyle} />
-      <Animated.View className="w-2/3 h-6 bg-surface-border rounded-md mb-4" style={animatedStyle} />
-      
-      <View className="flex-row items-center justify-between mt-2">
-        <View className="flex-row items-center flex-1">
-          <Animated.View className="w-6 h-6 bg-surface-border rounded-md mr-2" style={animatedStyle} />
-          <Animated.View className="w-24 h-4 bg-surface-border rounded-md" style={animatedStyle} />
-        </View>
-        <Animated.View className="w-16 h-6 bg-surface-border rounded-md" style={animatedStyle} />
+      <View className="flex-row items-center mb-4">
+        <Animated.View className="w-20 h-4 bg-slate-50 rounded-md mr-4" style={animatedStyle} />
+        <Animated.View className="w-12 h-4 bg-slate-50 rounded-md" style={animatedStyle} />
       </View>
+      
+      <Animated.View className="w-full h-8 bg-slate-50 rounded-md mb-4" style={animatedStyle} />
+      
+      <View className="flex-row items-center justify-between mb-6">
+        <View className="flex-row items-center space-x-3">
+          <Animated.View className="w-24 h-4 bg-slate-50 rounded-md" style={animatedStyle} />
+        </View>
+        <Animated.View className="w-16 h-4 bg-slate-50 rounded-md" style={animatedStyle} />
+      </View>
+
+      <Animated.View className="w-full h-12 bg-slate-50 rounded-2xl mt-2" style={animatedStyle} />
     </View>
   );
 }

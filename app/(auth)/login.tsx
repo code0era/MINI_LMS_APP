@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView } from "react-native";
+import { View, Text, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, TouchableOpacity, Pressable } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -50,39 +50,39 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-surface-DEFAULT">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
       >
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
-          <View className="flex-1 p-6 justify-center">
-            <View className="mb-10 items-center">
-              <View className="w-20 h-20 bg-primary-500 rounded-2xl items-center justify-center mb-6">
-                <Text className="text-4xl">🌊</Text>
+          <View className="flex-1 p-8 justify-center">
+            <View className="mb-12">
+              <View className="w-16 h-16 bg-primary-500 rounded-3xl items-center justify-center mb-8 shadow-lg shadow-primary-500/30">
+                <Text className="text-3xl">📸</Text>
               </View>
-              <Text className="text-3xl font-bold text-text-primary text-center mb-2">
-                Welcome back
+              <Text className="text-4xl font-black text-slate-900 mb-3 tracking-tight">
+                Welcome{"\n"}Back!
               </Text>
-              <Text className="text-base text-text-secondary text-center">
-                Sign in to continue your learning journey
+              <Text className="text-base font-medium text-slate-400">
+                Pick up where you left off.
               </Text>
             </View>
 
             {error && (
-              <View className="bg-error/10 border border-error/20 p-4 rounded-xl mb-6">
-                <Text className="text-error text-center">{error}</Text>
+              <View className="bg-red-50 border border-red-100 p-5 rounded-[24px] mb-8">
+                <Text className="text-red-500 font-bold text-center text-xs">{error}</Text>
               </View>
             )}
 
-            <View className="space-y-4">
+            <View>
               <Controller
                 control={control}
                 name="email"
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
-                    label="Email"
-                    placeholder="Enter your email"
+                    label="Email Address"
+                    placeholder="name@example.com"
                     keyboardType="email-address"
                     autoCapitalize="none"
                     onBlur={onBlur}
@@ -99,7 +99,7 @@ export default function LoginScreen() {
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input
                     label="Password"
-                    placeholder="Enter your password"
+                    placeholder="••••••••"
                     isPassword
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -109,27 +109,32 @@ export default function LoginScreen() {
                 )}
               />
 
-              <View className="items-end mb-6">
-                <Text className="text-primary-500 text-sm font-medium">
-                  Forgot Password?
-                </Text>
+              <View className="items-end mb-8">
+                <Pressable>
+                  <Text className="text-primary-500 text-xs font-bold uppercase tracking-widest">
+                    Forgot Password?
+                  </Text>
+                </Pressable>
               </View>
 
               <Button
                 label="Sign In"
                 onPress={handleSubmit(onSubmit)}
                 isLoading={isLoading}
-                className="w-full mb-6"
+                size="lg"
+                className="w-full mb-8 shadow-xl shadow-primary-500/40"
               />
 
               <View className="flex-row justify-center items-center">
-                <Text className="text-text-secondary text-base">
+                <Text className="text-slate-400 text-sm font-medium">
                   Don't have an account?{" "}
                 </Text>
                 <Link href="/(auth)/register" asChild>
-                  <Text className="text-primary-500 text-base font-bold">
-                    Sign Up
-                  </Text>
+                  <TouchableOpacity>
+                    <Text className="text-primary-500 text-sm font-black uppercase tracking-widest">
+                      Sign Up
+                    </Text>
+                  </TouchableOpacity>
                 </Link>
               </View>
             </View>

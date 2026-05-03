@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Image } from "expo-image";
 
+import { twMerge } from "tailwind-merge";
+
 interface AvatarProps {
   url?: string | null;
   fallback?: string;
@@ -24,7 +26,11 @@ export function Avatar({ url, fallback = "?", size = "md", className }: AvatarPr
     xl: "text-3xl",
   };
 
-  const containerStyle = `bg-surface-card border-2 border-surface-border items-center justify-center overflow-hidden ${sizeMap[size]} ${className || ""}`.trim();
+  const containerStyle = twMerge(
+    "bg-surface-card border-2 border-surface-border items-center justify-center overflow-hidden",
+    sizeMap[size],
+    className
+  );
 
   if (url) {
     return (

@@ -22,3 +22,9 @@ yarn-error.*
 
 expo-env.d.ts
 # @end expo-cli
+
+credentials.json
+*.keystore
+autoform_architecture.md
+App.tsx.bak
+image copy 4.png

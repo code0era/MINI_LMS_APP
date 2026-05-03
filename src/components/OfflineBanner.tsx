@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useNetworkStatus } from "../hooks/useNetworkStatus";
 
 export function OfflineBanner() {
@@ -8,7 +9,7 @@ export function OfflineBanner() {
   if (isOnline) return null;
 
   return (
-    <SafeAreaView className="bg-error">
+    <SafeAreaView edges={["top"]} className="bg-error">
       <View className="py-2 items-center justify-center flex-row">
         <Text className="text-white text-xs font-semi mr-2">⚠️</Text>
         <Text className="text-white text-xs font-semi">
